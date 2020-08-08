@@ -1,12 +1,16 @@
 package com.digi.trainers.hack.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.digi.trainers.hack.model.Doubt;
 import com.digi.trainers.hack.model.Event;
 import com.digi.trainers.hack.model.OnlineClass;
 import com.digi.trainers.hack.model.Student;
@@ -86,5 +90,28 @@ public class TeacherService {
 			}
 		} else
 			throw new Exception("Teacher with given Id not Found");
+	}
+	
+	public List<Student> getStudents(int id) throws Exception {
+		List<Student> students = studentRepo.findAll();
+		return students;
+	}
+	
+	public List<Doubt> getDoubts(int id) throws Exception {
+		Optional<Teacher> teacher  = teacherRepo.findById(id);
+		if(teacher.isPresent()) {			
+			List<Doubt> doubts = teacher.get().getDoubts().stream().collect(Collectors.toList());
+			return doubts;
+		}
+		return new ArrayList<>();
+	}
+	
+	public List<OnlineClass> getClasses(int id) throws Exception {
+		Optional<Teacher> teacher  = teacherRepo.findById(id);
+		if(teacher.isPresent()) {
+			List<OnlineClass> classes = teacher.get().getClasses().stream().collect(Collectors.toList());
+			return classes;
+		}
+		return new ArrayList<>();
 	}
 }

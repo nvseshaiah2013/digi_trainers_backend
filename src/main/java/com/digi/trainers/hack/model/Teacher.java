@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TEACHERS")
 public class Teacher {
@@ -20,12 +22,15 @@ public class Teacher {
 	private String contactEmail;
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Query> queries = new HashSet<Query>();
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<OnlineClass> classes = new HashSet<OnlineClass>();
 	
 	@OneToMany
+	@JsonIgnore
 	private Set<Doubt> doubts = new HashSet<Doubt>();
 	
 	
@@ -89,5 +94,8 @@ public class Teacher {
 	
 	public void addClass(OnlineClass onlineClass) {
 		this.classes.add(onlineClass);
+	}
+	public void addDoubt(Doubt doubt) {
+		this.doubts.add(doubt);
 	}
 }

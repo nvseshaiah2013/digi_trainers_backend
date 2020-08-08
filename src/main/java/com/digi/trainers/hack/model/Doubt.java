@@ -3,6 +3,8 @@ package com.digi.trainers.hack.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "DOUBT")
@@ -45,9 +50,9 @@ public class Doubt implements Serializable{
 	@JoinColumn(name = "TEACHER_ID", nullable = false)
 	private Teacher teacher;
 	
-	@ManyToOne
-	@JoinColumn(name = "STUDENT_ID", nullable = false)
-	private Student student;
+	@ManyToMany(mappedBy = "doubts")
+	@JsonIgnore
+	private Set<Student> students = new HashSet<Student>();
 	
 	@Column(name = "CREATE_DATE", nullable = false)
 	private Timestamp createdOn;
@@ -58,7 +63,7 @@ public class Doubt implements Serializable{
 	}
 
 	public Doubt(String description, String subject, String topic, String meetingLink, String pptLink,
-			String assignmentLink, Teacher teacher, Student student) {
+			String assignmentLink, Teacher teacher) {
 		this.description = description;
 		this.subject = subject;
 		this.topic = topic;
@@ -66,7 +71,7 @@ public class Doubt implements Serializable{
 		this.pptLink = pptLink;
 		this.assignmentLink = assignmentLink;
 		this.teacher = teacher;
-		this.student = student;
+
 		this.createdOn = Timestamp.valueOf(LocalDateTime.now());
 	}
 
@@ -134,14 +139,6 @@ public class Doubt implements Serializable{
 		this.teacher = teacher;
 	}
 
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
 	public Timestamp getCreatedOn() {
 		return createdOn;
 	}
@@ -149,6 +146,17 @@ public class Doubt implements Serializable{
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
 	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 	
+	public void addStudent(Student student) {
+		this.getStudents().add(student);
+	}
 	
 }

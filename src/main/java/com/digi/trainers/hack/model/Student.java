@@ -8,9 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "STUDENTS")
@@ -46,7 +49,9 @@ public class Student implements Serializable{
 	@JoinColumn(name = "ON_CL_ID")
 	private OnlineClass onlineClass;
 	
-	@OneToMany(mappedBy = "student")
+	@ManyToMany
+	@JsonIgnore
+	@JoinTable( name = "STUDENT_DOUBTS",joinColumns = @JoinColumn(name = "STUDENT_ID"), inverseJoinColumns = @JoinColumn(name = "DOUBT_ID"))
 	private Set<Doubt> doubts = new HashSet<Doubt>();
 	
 	
@@ -146,5 +151,8 @@ public class Student implements Serializable{
 		this.doubts = doubts;
 	}
 	
+	public void addDoubt(Doubt doubt) {
+		this.getDoubts().add(doubt);
+	}
 	
 }

@@ -89,10 +89,9 @@ public class PublicService {
 		} catch (BadCredentialsException e) {
 			throw new Exception("Incorrect username or password");
 		}
-
 		final UserDetails userDetails = loginService.loadUserByUsername(username);
 
-		final String jwt = jwtUtil.generateToken(userDetails);
+		final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 		User user = userRepository.findByUsername(username);
 		return new LoginResponse(jwt, user);
 	}

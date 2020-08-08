@@ -29,6 +29,9 @@ public class Query implements Serializable{
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
 	
+	@Column(name = "TOPIC")
+	private String topic;
+	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
 	private User user;
@@ -37,10 +40,10 @@ public class Query implements Serializable{
 	private Timestamp createdOn;
 	
 
-	public Query(String subject, String description, User user) {
+	public Query(String subject, String description, String topic) {
 		this.subject = subject;
 		this.description = description;
-		this.user = user;
+		this.topic = topic;
 		this.createdOn = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
@@ -87,6 +90,14 @@ public class Query implements Serializable{
 
 	public void setCreatedOn(Timestamp createdOn) {
 		this.createdOn = createdOn;
+	}
+
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
 	
 	
