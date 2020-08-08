@@ -2,30 +2,30 @@ package com.digi.trainers.hack.requests;
 
 public class TeacherSignUpRequest {
 
-	private String username;
+private String email;
 	
 	private String password;
 	
 	private String name;
 	
-	private String contactEmail;
-	
-	
+	private String phone;	
 
-	public TeacherSignUpRequest(String username, String password, String name, String contactEmail) {
-		this.username = username;
+
+	public TeacherSignUpRequest(String email, String password, String name, String phone) {
+		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.contactEmail = contactEmail;
+		this.phone = phone;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
 
 	public String getPassword() {
 		return password;
@@ -43,13 +43,12 @@ public class TeacherSignUpRequest {
 		this.name = name;
 	}
 
-	public String getContactEmail() {
-		return contactEmail;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setContactEmail(String contactEmail) {
-		this.contactEmail = contactEmail;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	
 	
 }

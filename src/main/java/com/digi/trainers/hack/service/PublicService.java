@@ -50,26 +50,25 @@ public class PublicService {
 	
 	public void addStudent(StudentSignUpRequest request) throws Exception
 	{
-		User user = userRepository.findByUsername(request.getUsername());
+		User user = userRepository.findByUsername(request.getEmail());
 		if(user!=null) {
 			throw new Exception("Username already exists");
 		}
 		String salt = BCrypt.gensalt(10);
-		User addedUser = userRepository.save(new User(request.getUsername(),BCrypt.hashpw(request.getPassword(), salt), "ROLE_STUDENT"));
-		Student newStudent = new Student(addedUser.getId(),request.getName(),request.getContactNo(),request.getAddress(),request.getFatherName(), 
-				request.getFatherContact(), request.getMotherName(), request.getMotherContact());
+		User addedUser = userRepository.save(new User(request.getEmail(),BCrypt.hashpw(request.getPassword(), salt), "ROLE_STUDENT"));
+		Student newStudent = new Student(addedUser.getId(),request.getName(),request.getPhone(),"","","", "", "");
 		studentRepository.save(newStudent);
 	}
 	
 	public void addTeacher(TeacherSignUpRequest request) throws Exception
 	{
-		User user = userRepository.findByUsername(request.getUsername());
+		User user = userRepository.findByUsername(request.getEmail());
 		if(user!=null) {
 			throw new Exception("Username already exists");
 		}
 		String salt = BCrypt.gensalt(10);
-		User addedUser = userRepository.save(new User(request.getUsername(),BCrypt.hashpw(request.getPassword(), salt), "ROLE_TEACHER"));
-		Teacher newTeacher = new Teacher(addedUser.getId(),request.getName(), request.getContactEmail());
+		User addedUser = userRepository.save(new User(request.getEmail(),BCrypt.hashpw(request.getPassword(), salt), "ROLE_TEACHER"));
+		Teacher newTeacher = new Teacher(addedUser.getId(),request.getName(), "");
 		teacherRepository.save(newTeacher);
 	}
 	

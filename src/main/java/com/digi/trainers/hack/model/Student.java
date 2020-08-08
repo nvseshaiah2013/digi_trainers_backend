@@ -24,22 +24,22 @@ public class Student implements Serializable{
 	@Column(name = "NAME", nullable = false)
 	private String name;
 	
-	@Column(name = "CONTACT_NO", nullable = false)
+	@Column(name = "CONTACT_NO")
 	private String contactNo;
 	
-	@Column(name = "ADDRESS", nullable = false)
+	@Column(name = "ADDRESS")
 	private String address;
 	
-	@Column(name = "FATHER_NAME", nullable = false)
+	@Column(name = "FATHER_NAME")
 	private String fatherName;
 	
-	@Column(name = "FATHER_CONTACT", nullable = false)
+	@Column(name = "FATHER_CONTACT")
 	private String fatherContact;
 	
-	@Column(name = "MOTHER_NAME", nullable = false)
+	@Column(name = "MOTHER_NAME")
 	private String motherName;
 	
-	@Column(name = "MOTHER_CONTACT", nullable = false)
+	@Column(name = "MOTHER_CONTACT")
 	private String motherContact;
 	
 	@ManyToOne

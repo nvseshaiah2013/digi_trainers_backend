@@ -7,11 +7,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -21,6 +25,7 @@ public class Event implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Column(name = "DESCR", nullable = false)
@@ -41,6 +46,9 @@ public class Event implements Serializable{
 	@Column(name = "ASSIGN_LINK", nullable =false)
 	private String assignmentLink;
 	
+	@Column(name = "ATT_LINK", nullable = false)
+	private String attendanceLink;
+	
 	@ManyToOne
 	@JoinColumn(name = "TEACHER_ID", nullable = false)
 	private Teacher teacher;
@@ -48,10 +56,12 @@ public class Event implements Serializable{
 	@Column(name = "EV_DATE", nullable = false)
 	private Timestamp eventDate;
 	
-	@Column(name = "O_CLASS", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "O_CLASS", nullable = false)
 	private OnlineClass onlineClass;
 	
 	@OneToMany(mappedBy = "event")
+	@JsonIgnore
 	private Set<Question> questions = new HashSet<>();	
 	
 	public Event()
@@ -60,7 +70,7 @@ public class Event implements Serializable{
 	}
 	
 	public Event(String description, String subject, String topic, String meetingLink, String pptLink,
-			String assignmentLink, Teacher teacher, Timestamp eventDate, OnlineClass onlineClass) {
+			String assignmentLink, Teacher teacher, Timestamp eventDate, OnlineClass onlineClass, String attendanceLink) {
 		this.description = description;
 		this.subject = subject;
 		this.topic = topic;
@@ -70,6 +80,7 @@ public class Event implements Serializable{
 		this.teacher = teacher;
 		this.eventDate = eventDate;
 		this.onlineClass = onlineClass;
+		this.attendanceLink = attendanceLink;
 	}
 
 	public String getDescription() {
@@ -159,5 +170,14 @@ public class Event implements Serializable{
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
+
+	public String getAttendanceLink() {
+		return attendanceLink;
+	}
+
+	public void setAttendanceLink(String attendanceLink) {
+		this.attendanceLink = attendanceLink;
+	}
+	
 	
 }

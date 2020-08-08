@@ -87,5 +87,7 @@ public class Teacher {
 		this.doubts = doubts;
 	}
 	
-	
+	public void addClass(OnlineClass onlineClass) {
+		this.classes.add(onlineClass);
+	}
 }
