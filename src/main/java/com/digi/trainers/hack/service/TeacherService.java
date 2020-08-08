@@ -54,6 +54,8 @@ public class TeacherService {
 					Optional<Student> student = studentRepo.findById(studentId);
 					if (student.isPresent()) {
 						onlineClass.get().getStudents().add(student.get());
+						student.get().setOnlineClass(onlineClass.get());
+						classRepo.save(onlineClass.get());
 					} else
 						throw new Exception("Student with given id does not exist");
 				} else
