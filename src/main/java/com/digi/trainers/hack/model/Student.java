@@ -39,12 +39,32 @@ public class Student implements Serializable{
 	@Column(name = "MOTHER_NAME", nullable = false)
 	private String motherName;
 	
+	@Column(name = "MOTHER_CONTACT", nullable = false)
+	private String motherContact;
+	
 	@ManyToOne
 	@JoinColumn(name = "ON_CL_ID")
 	private OnlineClass onlineClass;
 	
 	@OneToMany(mappedBy = "student")
 	private Set<Doubt> doubts = new HashSet<Doubt>();
+	
+	
+
+	public Student() {
+	}
+
+	public Student(int id, String name, String contactNo, String address, String fatherName, String fatherContact,
+			String motherName, String motherContact) {
+		this.id = id;
+		this.name = name;
+		this.contactNo = contactNo;
+		this.address = address;
+		this.fatherName = fatherName;
+		this.fatherContact = fatherContact;
+		this.motherName = motherName;
+		this.motherContact = motherContact;
+	}
 
 	public int getId() {
 		return id;
@@ -101,4 +121,30 @@ public class Student implements Serializable{
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
+
+	public String getMotherContact() {
+		return motherContact;
+	}
+
+	public void setMotherContact(String motherContact) {
+		this.motherContact = motherContact;
+	}
+
+	public OnlineClass getOnlineClass() {
+		return onlineClass;
+	}
+
+	public void setOnlineClass(OnlineClass onlineClass) {
+		this.onlineClass = onlineClass;
+	}
+
+	public Set<Doubt> getDoubts() {
+		return doubts;
+	}
+
+	public void setDoubts(Set<Doubt> doubts) {
+		this.doubts = doubts;
+	}
+	
+	
 }

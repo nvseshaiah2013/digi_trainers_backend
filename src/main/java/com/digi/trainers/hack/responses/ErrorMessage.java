@@ -23,6 +23,12 @@ public class ErrorMessage implements Serializable{
 	public String toString() {
 		return "{ \"message\":" + message + ", \"header\":" + header + "}";
 	}
+	public String getHeader() {
+		return header;
+	}
+	public void setHeader(String header) {
+		this.header = header;
+	}
 	
 	
 }

@@ -54,10 +54,13 @@ public class Event implements Serializable{
 	@OneToMany(mappedBy = "event")
 	private Set<Question> questions = new HashSet<>();	
 	
-
+	public Event()
+	{
+		
+	}
+	
 	public Event(String description, String subject, String topic, String meetingLink, String pptLink,
 			String assignmentLink, Teacher teacher, Timestamp eventDate, OnlineClass onlineClass) {
-		super();
 		this.description = description;
 		this.subject = subject;
 		this.topic = topic;

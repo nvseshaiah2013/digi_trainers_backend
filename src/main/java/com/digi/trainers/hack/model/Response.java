@@ -35,6 +35,11 @@ public class Response implements Serializable{
 		this.response = response;
 		this.timestamp = Timestamp.valueOf(LocalDateTime.now());
 	}
+	
+	public Response()
+	{
+		
+	}
 
 	public int getId() {
 		return id;

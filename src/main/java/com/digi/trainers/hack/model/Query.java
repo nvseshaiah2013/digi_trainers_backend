@@ -41,7 +41,10 @@ public class Query implements Serializable{
 		this.createdOn = Timestamp.valueOf(LocalDateTime.now());
 	}
 	
-	
+	public Query()
+	{
+		
+	}
 
 	public int getId() {
 		return id;

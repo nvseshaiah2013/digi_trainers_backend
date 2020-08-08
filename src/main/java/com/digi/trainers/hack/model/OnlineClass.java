@@ -25,7 +25,11 @@ public class OnlineClass implements Serializable{
 	@OneToMany(mappedBy = "onlineClass")
 	private Set<Student> students =  new HashSet<Student>();
 	
-
+	public OnlineClass()
+	{
+		
+	}
+	
 	public OnlineClass(String className) {
 		this.className = className;
 	}

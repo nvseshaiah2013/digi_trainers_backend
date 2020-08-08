@@ -24,8 +24,14 @@ public class Admin implements Serializable{
 	
 	@Column(name = "CONTACT_NO", nullable = false)
 	private String contactNo;	
+	
+	public Admin()
+	{
+		
+	}
 
-	public Admin(String name, String contactEmail, String contactNo) {
+	public Admin(int id,String name, String contactEmail, String contactNo) {
+		this.id = id;
 		this.name = name;
 		this.contactEmail = contactEmail;
 		this.contactNo = contactNo;
@@ -53,6 +59,14 @@ public class Admin implements Serializable{
 
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

@@ -48,6 +48,11 @@ public class Doubt implements Serializable{
 	
 	@Column(name = "CREATE_DATE", nullable = false)
 	private Timestamp createdOn;
+	
+	public Doubt()
+	{
+		
+	}
 
 	public Doubt(String description, String subject, String topic, String meetingLink, String pptLink,
 			String assignmentLink, Teacher teacher, Student student) {

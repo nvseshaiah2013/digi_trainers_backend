@@ -32,6 +32,11 @@ public class Question implements Serializable{
 	@JoinColumn(name = "EVENT_ID")
 	private Event event;
 	
+	public Question()
+	{
+		
+	}
+	
 	public Question(String question, String optionA, String optionB, String optionC, String optionD,
 			String correctOption) {
 		this.question = question;

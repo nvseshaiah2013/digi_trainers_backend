@@ -28,7 +28,10 @@ public class Attendance implements Serializable{
 	@Column(name =  "QUALITY")
 	private float quality;
 	
-	
+	public Attendance()
+	{
+		
+	}
 
 	public Attendance(Student student, Event event, float quality) {
 		this.student = student;
